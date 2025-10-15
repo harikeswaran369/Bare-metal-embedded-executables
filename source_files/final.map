@@ -1,0 +1,242 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+user_tasks          0x50              main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00100000         xr
+SRAM             0x20000000         0x00020000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD main.o
+LOAD led.o
+LOAD stm32_startup.o
+LOAD syscalls.o
+
+.text           0x08000000      0xab0
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x184 stm32_startup.o
+                0x08000000                vectors
+ *(.text)
+ .text          0x08000184      0x4f4 main.o
+                0x08000184                main
+                0x080001b0                idle_task
+                0x080001b6                task1_handler
+                0x080001d8                task2_handler
+                0x080001fc                task3_handler
+                0x08000220                task4_handler
+                0x08000244                init_systick_timer
+                0x080002ac                init_scheduler_stack
+                0x080002b6                init_tasks_stack
+                0x080003d0                enable_processor_faults
+                0x0800040c                get_psp_value
+                0x0800042c                save_psp_value
+                0x08000454                update_next_task
+                0x080004dc                switch_sp_to_psp
+                0x080004f6                schedule
+                0x0800051c                task_delay
+                0x0800057c                PendSV_Handler
+                0x080005a2                update_global_tick_count
+                0x080005bc                unblock_tasks
+                0x0800061c                SysTick_Handler
+                0x08000648                HardFault_Handler
+                0x08000658                MemManage_Handler
+                0x08000668                BusFault_Handler
+ .text          0x08000678       0xfc led.o
+                0x08000678                delay
+                0x080006a0                led_init_all
+                0x08000714                led_on
+                0x08000744                led_off
+ .text          0x08000774       0x8c stm32_startup.o
+                0x08000774                RTC_Alarm_IRQHandler
+                0x08000774                HASH_RNG_IRQHandler
+                0x08000774                EXTI2_IRQHandler
+                0x08000774                TIM8_CC_IRQHandler
+                0x08000774                DebugMon_Handler
+                0x08000774                TIM1_CC_IRQHandler
+                0x08000774                DMA2_Stream5_IRQHandler
+                0x08000774                DMA1_Stream5_IRQHandler
+                0x08000774                PVD_IRQHandler
+                0x08000774                SDIO_IRQHandler
+                0x08000774                TAMP_STAMP_IRQHandler
+                0x08000774                NMI_Handler
+                0x08000774                CAN2_RX1_IRQHandler
+                0x08000774                EXTI3_IRQHandler
+                0x08000774                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08000774                TIM1_UP_TIM10_IRQHandler
+                0x08000774                TIM8_UP_TIM13_IRQHandler
+                0x08000774                I2C3_ER_IRQHandler
+                0x08000774                EXTI0_IRQHandler
+                0x08000774                I2C2_EV_IRQHandler
+                0x08000774                DMA1_Stream2_IRQHandler
+                0x08000774                CAN1_RX0_IRQHandler
+                0x08000774                FPU_IRQHandler
+                0x08000774                OTG_HS_WKUP_IRQHandler
+                0x08000774                UsageFault_Handler
+                0x08000774                CAN2_SCE_IRQHandler
+                0x08000774                DMA2_Stream2_IRQHandler
+                0x08000774                SPI1_IRQHandler
+                0x08000774                TIM6_DAC_IRQHandler
+                0x08000774                TIM1_BRK_TIM9_IRQHandler
+                0x08000774                DCMI_IRQHandler
+                0x08000774                CAN2_RX0_IRQHandler
+                0x08000774                DMA2_Stream3_IRQHandler
+                0x08000774                USART6_IRQHandler
+                0x08000774                USART3_IRQHandler
+                0x08000774                CRYP_IRQHandler
+                0x08000774                DMA2_Stream6_IRQHandler
+                0x08000774                CAN1_RX1_IRQHandler
+                0x08000774                UART5_IRQHandler
+                0x08000774                DMA2_Stream0_IRQHandler
+                0x08000774                TIM4_IRQHandler
+                0x08000774                I2C1_EV_IRQHandler
+                0x08000774                DMA1_Stream6_IRQHandler
+                0x08000774                DMA1_Stream1_IRQHandler
+                0x08000774                UART4_IRQHandler
+                0x08000774                TIM3_IRQHandler
+                0x08000774                RCC_IRQHandler
+                0x08000774                TIM8_BRK_TIM12_IRQHandler
+                0x08000774                Default_Handler
+                0x08000774                EXTI15_10_IRQHandler
+                0x08000774                ADC_IRQHandler
+                0x08000774                DMA1_Stream7_IRQHandler
+                0x08000774                TIM7_IRQHandler
+                0x08000774                CAN2_TX_IRQHandler
+                0x08000774                TIM5_IRQHandler
+                0x08000774                DMA2_Stream7_IRQHandler
+                0x08000774                I2C3_EV_IRQHandler
+                0x08000774                EXTI9_5_IRQHandler
+                0x08000774                RTC_WKUP_IRQHandler
+                0x08000774                ETH_WKUP_IRQHandler
+                0x08000774                SPI2_IRQHandler
+                0x08000774                OTG_HS_EP1_IN_IRQHandler
+                0x08000774                DMA1_Stream0_IRQHandler
+                0x08000774                CAN1_TX_IRQHandler
+                0x08000774                SVC_Handler
+                0x08000774                EXTI4_IRQHandler
+                0x08000774                FSMC_IRQHandler
+                0x08000774                ETH_IRQHandler
+                0x08000774                OTG_HS_EP1_OUT_IRQHandler
+                0x08000774                WWDG_IRQHandler
+                0x08000774                TIM2_IRQHandler
+                0x08000774                OTG_FS_WKUP_IRQHandler
+                0x08000774                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08000774                OTG_HS_IRQHandler
+                0x08000774                EXTI1_IRQHandler
+                0x08000774                USART2_IRQHandler
+                0x08000774                I2C2_ER_IRQHandler
+                0x08000774                DMA2_Stream1_IRQHandler
+                0x08000774                CAN1_SCE_IRQHandler
+                0x08000774                DMA2_Stream4_IRQHandler
+                0x08000774                USART1_IRQHandler
+                0x08000774                OTG_FS_IRQHandler
+                0x08000774                SPI3_IRQHandler
+                0x08000774                DMA1_Stream4_IRQHandler
+                0x08000774                I2C1_ER_IRQHandler
+                0x08000774                DMA1_Stream3_IRQHandler
+                0x0800077a                Reset_Handler
+ .text          0x08000800      0x25c syscalls.o
+                0x08000800                initialise_monitor_handles
+                0x0800080c                _getpid
+                0x0800081a                _kill
+                0x0800083a                _exit
+                0x0800084e                _read
+                0x08000888                _write
+                0x080008c0                _close
+                0x080008d6                _fstat
+                0x080008f4                _isatty
+                0x08000908                _lseek
+                0x08000920                _open
+                0x0800093a                _wait
+                0x08000958                _unlink
+                0x08000976                _times
+                0x0800098c                _stat
+                0x080009aa                _link
+                0x080009ca                _fork
+                0x080009e0                _execve
+                0x08000a02                _sbrk
+ *(.rodata)
+ .rodata        0x08000a5c       0x51 main.o
+                0x08000a5c                v_1
+                0x08000a60                v_2
+                0x08000a64                v_3
+                0x08000ab0                . = ALIGN (0x4)
+ *fill*         0x08000aad        0x3 
+                0x08000ab0                _etext = .
+
+.glue_7         0x08000ab0        0x0
+ .glue_7        0x08000ab0        0x0 linker stubs
+
+.glue_7t        0x08000ab0        0x0
+ .glue_7t       0x08000ab0        0x0 linker stubs
+
+.vfp11_veneer   0x08000ab0        0x0
+ .vfp11_veneer  0x08000ab0        0x0 linker stubs
+
+.v4_bx          0x08000ab0        0x0
+ .v4_bx         0x08000ab0        0x0 linker stubs
+
+.iplt           0x08000ab0        0x0
+ .iplt          0x08000ab0        0x0 main.o
+
+.rel.dyn        0x08000ab0        0x0
+ .rel.iplt      0x08000ab0        0x0 main.o
+
+.data           0x20000000        0x8 load address 0x08000ab0
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000        0x1 main.o
+                0x20000000                current_task
+ .data          0x20000001        0x0 led.o
+ .data          0x20000001        0x0 stm32_startup.o
+ *fill*         0x20000001        0x3 
+ .data          0x20000004        0x4 syscalls.o
+                0x20000004                environ
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                _edata = .
+
+.igot.plt       0x20000008        0x0 load address 0x08000ab8
+ .igot.plt      0x20000008        0x0 main.o
+
+.bss            0x20000008       0x5c load address 0x08000ab8
+                0x20000008                _sbss = .
+                0x20000008                __bss_start__ = _sbss
+ *(.bss)
+ .bss           0x20000008        0x4 main.o
+                0x20000008                g_tick_count
+ .bss           0x2000000c        0x0 led.o
+ .bss           0x2000000c        0x0 stm32_startup.o
+ .bss           0x2000000c        0x8 syscalls.o
+                0x2000000c                __env
+ *(COMMON)
+ COMMON         0x20000014       0x50 main.o
+                0x20000014                user_tasks
+                0x20000064                . = ALIGN (0x4)
+                0x20000064                _ebss = .
+                0x20000064                __bss_end__ = _ebss
+                0x20000064                . = ALIGN (0x4)
+                0x20000064                end = .
+OUTPUT(final.elf elf32-littlearm)
+
+.comment        0x00000000       0x79
+ .comment       0x00000000       0x79 main.o
+                                 0x7a (size before relaxing)
+ .comment       0x00000079       0x7a led.o
+ .comment       0x00000079       0x7a stm32_startup.o
+ .comment       0x00000079       0x7a syscalls.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e main.o
+ .ARM.attributes
+                0x0000002e       0x2e led.o
+ .ARM.attributes
+                0x0000005c       0x2e stm32_startup.o
+ .ARM.attributes
+                0x0000008a       0x2e syscalls.o
