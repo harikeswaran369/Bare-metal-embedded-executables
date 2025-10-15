@@ -107,7 +107,3 @@ Baremetal_Embedded/
 ### Conclusion
 
 This project provides a complete hands-on experience in bare-metal embedded development — from startup to flashing — equipping you with an industry-level understanding of how embedded systems boot and run at the lowest level.
-
----
-
-Would you like me to format this version into **Markdown code block format** so you can paste it directly into your GitHub README file?
